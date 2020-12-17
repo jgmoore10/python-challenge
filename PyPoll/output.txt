@@ -1,0 +1,7 @@
+Election Results
+------------------------
+The total votes cast were: 1048575
+The results for each candidate were: {'Khan\n': 661583, 'Correy\n': 209046, 'Li\n': 146360, "O'Tooley\n": 31586}
+------------------------
+The winner was: Khan
+ 661583

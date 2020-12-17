@@ -6,10 +6,6 @@ poll_data = os.path.join("Resources", "election_data.csv")
 #Variables 
 votes = []
 candidates = []
-Kahn_count = int()
-Correy_count = int()
-Li_count = int()
-OTooley_count = int()
 results = {}
 total_votes=0
 win_count=0
@@ -22,11 +18,9 @@ with open(poll_data) as csvfile:
     csv_header = next(csvfile)
 
     for row in csvfile:
-        #print(row)
         total_votes = total_votes + 1
 
-        candidates_name = row.split(',')[2]
-        #print(candidates_name)
+        candidates_name = row.split(',')[2]       
 
         if candidates_name not in candidates:
             candidates.append(candidates_name)
@@ -35,65 +29,35 @@ with open(poll_data) as csvfile:
         
         results[candidates_name] += 1 
 
+
     for row in results:
         votes = results.get(row)
-        #vote_percent =
+        vote_percent = votes / total_votes
+
+
 
         if (votes > win_count):
             win_count = votes
-            win_candidate= row
-    print(win_candidate, win_count)
+            win_candidate= row 
 
 
 
+print("Election Results")
+print("------------------------")
+print(f'The total votes cast were: {total_votes}')
+print(f'The results for each candidates were:{results}')
+print("------------------------")
+print(f'The winner was: {win_candidate, win_count}')
 
-
-
-
-
-
-
-    
-
-# #Calculate the total number of votes cast
-# total_votes = 0
-
-# #Calculate a complete list of candidates who received votes
-#candidate_list = ["Kahn", "Correy", "Li", "O'Toole"]
-
-
-# #Calculate the total number of votes each candidate won
-# Kahn = int(Candidate.count("Kahn"))
-# Correy = int(Candidate.count("Correy"))
-# Li = int(Candidate.count("Li"))
-# O'Tooley = int(Candidate.count("O'Tooley"))
-
-# #Calculate the percentage of votes each candidate won
-# percentage_Kahn = Kahn/total_votes
-# percentage_Correy = Correy/total_votes
-# percentage_Li = Li/total_votes
-# percentage_O'Tooley = O'Tooley/total_votes
-
-
-
-
-# #Calculate the winner of the election based on popular vote.
-# #define output path
-# output_file = os.path.join("analysis.txt")
-"""
-print('Election Results')
-print('----------------------------------------')
-print(f'Total Votes: {count}')
-    for canditate in candidates:
-        print(f'{candidate}: {percentages[candidate]}% ({votes[candidate]}')
-print(f'Winner: {winner')
 
 #Write text to file
-with open(textpath,'w') as textfile:
-   textfile.write('Election Results\n')
-   textfile.write('----------------------------------------')
-   textfile.write(f'Total Votes: {count}\n')
+output = open("output.txt",'w')
 
+line1=('Election Results')
+line2='------------------------'
+line3=str(f'The total votes cast were: {str(total_votes)}')
+line4=str(f'The results for each candidate were: {str(results)}')
+line5=str(f'------------------------')
+line6=str(f'The winner was: {str(win_candidate)} {str(win_count)}')
 
-   textfile.write(f'Winner: {winner}')
-   """
+output.write('{}\n{}\n{}\n{}\n{}\n{}\n'.format(line1,line2,line3,line4,line5,line6))
