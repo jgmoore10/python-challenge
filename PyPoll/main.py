@@ -11,20 +11,55 @@ Correy_count = int()
 Li_count = int()
 OTooley_count = int()
 results = {}
+total_votes=0
+win_count=0
+win_candidate = ""
+
 
 #Read CSV File
 with open(poll_data) as csvfile:
     csvreader = csv.reader(csvfile, delimiter=",")
     csv_header = next(csvfile)
 
-    next(csvreader)
+    for row in csvfile:
+        #print(row)
+        total_votes = total_votes + 1
+
+        candidates_name = row.split(',')[2]
+        #print(candidates_name)
+
+        if candidates_name not in candidates:
+            candidates.append(candidates_name)
+            results[candidates_name] = 0
+        
+        
+        results[candidates_name] += 1 
+
+    for row in results:
+        votes = results.get(row)
+        #vote_percent =
+
+        if (votes > win_count):
+            win_count = votes
+            win_candidate= row
+    print(win_candidate, win_count)
+
+
+
+
+
+
+
+
+
+
     
 
 # #Calculate the total number of votes cast
 # total_votes = 0
 
 # #Calculate a complete list of candidates who received votes
-candidate_list = ["Kahn", "Correy", "Li", "O'Toole"]
+#candidate_list = ["Kahn", "Correy", "Li", "O'Toole"]
 
 
 # #Calculate the total number of votes each candidate won
@@ -45,6 +80,7 @@ candidate_list = ["Kahn", "Correy", "Li", "O'Toole"]
 # #Calculate the winner of the election based on popular vote.
 # #define output path
 # output_file = os.path.join("analysis.txt")
+"""
 print('Election Results')
 print('----------------------------------------')
 print(f'Total Votes: {count}')
@@ -60,3 +96,4 @@ with open(textpath,'w') as textfile:
 
 
    textfile.write(f'Winner: {winner}')
+   """
